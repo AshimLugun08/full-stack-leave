@@ -13,6 +13,8 @@
   },
   "externals": {},
   "localizedResources": {
-    "LeaveFrontWebPartStrings": "lib/webparts/leaveFront/loc/{locale}.js"
+    "LeaveFrontWebPartStrings": "lib/webparts/leaveFront/loc/{locale}.js",
+    "ControlStrings": "./node_modules/@pnp/spfx-controls-react/lib/loc/{locale}.js"
+
   }
 }

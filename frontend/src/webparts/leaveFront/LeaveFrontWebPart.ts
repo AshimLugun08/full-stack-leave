@@ -1,3 +1,4 @@
+// LeaveFrontWebPart.ts
 import * as React from 'react';
 import * as ReactDom from 'react-dom';
 import { Version } from '@microsoft/sp-core-library';
@@ -13,31 +14,28 @@ import LeaveFront from './components/LeaveFront';
 import { ILeaveFrontProps } from './components/ILeaveFrontProps';
 
 export interface ILeaveFrontWebPartProps {
-  description: string;
+  description: string;  // Declare description in WebPart props
 }
 
 export default class LeaveFrontWebPart extends BaseClientSideWebPart<ILeaveFrontWebPartProps> {
 
   private _isDarkTheme: boolean = false;
   private _environmentMessage: string = '';
-
   public render(): void {
     const element: React.ReactElement<ILeaveFrontProps> = React.createElement(
       LeaveFront,
       {
-        description: this.properties.description, // Must exist in ILeaveFrontProps
+        description: this.properties.description,
         isDarkTheme: this._isDarkTheme,
         environmentMessage: this._environmentMessage,
         hasTeamsContext: !!this.context.sdks?.microsoftTeams,
-        userDisplayName: this.context.pageContext.user.displayName
+        userDisplayName: this.context.pageContext.user.displayName,
+        context: this.context
       }
     );
   
     ReactDom.render(element, this.domElement);
   }
-  
-
-
   protected async onInit(): Promise<void> {
     this._environmentMessage = await this._getEnvironmentMessage();
   }

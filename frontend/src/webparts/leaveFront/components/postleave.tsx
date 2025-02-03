@@ -1,21 +1,18 @@
 import * as React from 'react';
 import { Component } from 'react';
-import { Dropdown, IDropdownOption, TextField, PrimaryButton } from '@fluentui/react';
+import { Dropdown, IDropdownOption, PrimaryButton, TextField } from '@fluentui/react';
+import { IPeoplePickerContext, PeoplePicker, PrincipalType } from "@pnp/spfx-controls-react/lib/PeoplePicker";
+import axios from 'axios';
+import { spfi } from "@pnp/sp";
+import { SPFx } from "@pnp/sp";
+import "@pnp/sp/webs";
+import "@pnp/sp/folders";  // Add this import
+import "@pnp/sp/files";    // Add this import
 
-// Define interface for leave request data
-interface ILeaveRequest {
-  employeeName: string;
-  startDate: string;
-  endDate: string;
-  status: string;
-  createdBy: string;
-  modifiedBy: string;
-  active: boolean;
-  flag: string;
-  timestamp: string;
+interface IProps {
+  context: any; // SPFx Context
 }
 
-// Interface for component state
 interface IState {
   employeeName: string;
   startDate: string;
@@ -23,142 +20,144 @@ interface IState {
   status: string;
   createdBy: string;
   modifiedBy: string;
+  selectedUsers: string[];
+  loading: boolean;
+  file: File | null;
 }
 
-class PostComponent extends Component<{}, IState> {
-  constructor(props: {}) {
+class PostComponent extends Component<IProps, IState> {
+  private peoplePickerContext: IPeoplePickerContext;
+  private sp = spfi().using(SPFx(this.props.context));
+
+  constructor(props: IProps) {
     super(props);
 
-    // Initialize state with default values
+    this.peoplePickerContext = {
+      absoluteUrl: this.props.context.pageContext.web.absoluteUrl,
+      msGraphClientFactory: this.props.context.msGraphClientFactory,
+      spHttpClient: this.props.context.spHttpClient
+    };
+
     this.state = {
       employeeName: '',
       startDate: '',
       endDate: '',
-      status: 'Pending', // Default status
+      status: 'Pending',
       createdBy: '',
       modifiedBy: '',
+      selectedUsers: [],
+      loading: false,
+      file: null,
     };
   }
 
-  // Dropdown options for status
   statusOptions: IDropdownOption[] = [
     { key: 'Pending', text: 'Pending' },
     { key: 'Approved', text: 'Approved' },
     { key: 'Rejected', text: 'Rejected' },
   ];
 
-  // Handle form input change
+  private _getPeoplePickerItems = (items: any[]) => {
+    if (items.length > 0) {
+      const selectedUserId = items[0].text;
+      this.setState({ employeeName: selectedUserId });
+    } else {
+      this.setState({ employeeName: '' });
+    }
+  };
+
   handleInputChange = (newValue: string, field: keyof IState) => {
     this.setState({
       [field]: newValue,
-    } as Pick<IState, keyof IState>);
+    } as unknown as Pick<IState, keyof IState>);
   };
 
-  // Handle form submission
+  handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files.length > 0) {
+      this.setState({ file: event.target.files[0] });
+    }
+  };
+
+  uploadFileToSharePoint = async (): Promise<string | null> => {
+    const { file } = this.state;
+    if (!file) return null;
+
+    try {
+      const response = await this.sp.web.getFolderByServerRelativePath("leave_doc")
+        .files.addUsingPath(file.name, file, { Overwrite: true });
+      return response.ServerRelativeUrl;
+    } catch (error) {
+      console.error("Error uploading file:", error);
+      return null;
+    }
+  };
+
   handleSubmit = async (e: React.FormEvent): Promise<void> => {
     e.preventDefault();
 
     const { employeeName, startDate, endDate, status, createdBy, modifiedBy } = this.state;
+    this.setState({ loading: true });
 
-    // Create leave request object with all required fields
-    const leaveRequest: ILeaveRequest = {
-      employeeName: employeeName,
-      startDate: startDate,
-      endDate: endDate,
-      status: status,
-      createdBy: createdBy,
-      modifiedBy: modifiedBy,
+    // Upload file to SharePoint and get the document link
+    const documentLink = await this.uploadFileToSharePoint();
+
+    // Prepare the leave request data
+    const leaveRequest = {
+      employeeName,
+      startDate,
+      endDate,
+      status,
+      createdBy,
+      modifiedBy,
+      documentLink,
       active: true,
-      flag: 'Created', // Default flag
-      timestamp: new Date().toISOString(), // Current timestamp
+      flag: 'Created',
+      timestamp: new Date().toISOString(),
     };
 
-    // Make POST request to API
     try {
-      const response = await fetch('https://localhost:44387/api/addLeave', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(leaveRequest),
+      // Post leave request data to the API
+      const response = await axios.post('https://localhost:44387/api/addLeave', leaveRequest, {
+        headers: { 'Content-Type': 'application/json' }
       });
-
-      const result = await response.json();
-      if (response.ok) {
-        console.log('Leave request added successfully:', result);
-      } else {
-        console.error('Error adding leave request:', result);
-      }
+      console.log('Leave request added successfully:', response.data);
     } catch (error) {
       console.error('Error posting leave request:', error);
+    } finally {
+      this.setState({ loading: false });
     }
   };
 
   render() {
-    const { employeeName, startDate, endDate, status, createdBy, modifiedBy } = this.state;
+    const { startDate, endDate, status, createdBy, modifiedBy, loading } = this.state;
 
     return (
       <form onSubmit={this.handleSubmit}>
-        <div style={{ marginBottom: '15px' }}>
-          <TextField
-            label="Employee Name"
-            value={employeeName}
-            onChange={(e, newValue) => this.handleInputChange(newValue || '', 'employeeName')}
-            required
-          />
-        </div>
+        <PeoplePicker
+          context={this.peoplePickerContext}
+          titleText="Select Employee"
+          personSelectionLimit={3}
+          groupName={""}
+          showtooltip={true}
+          required={true}
+          disabled={false}
+          searchTextLimit={5}
+          onChange={this._getPeoplePickerItems}
+          principalTypes={[PrincipalType.User]}
+          resolveDelay={1000}
+        />
 
-        <div style={{ marginBottom: '15px' }}>
-          <TextField
-            label="Start Date"
-            type="date"
-            value={startDate}
-            onChange={(e, newValue) => this.handleInputChange(newValue || '', 'startDate')}
-            required
-          />
-        </div>
+        <TextField label="Start Date" type="date" value={startDate} onChange={(e, newValue) => this.handleInputChange(newValue || '', 'startDate')} required />
+        <TextField label="End Date" type="date" value={endDate} onChange={(e, newValue) => this.handleInputChange(newValue || '', 'endDate')} required />
+        <Dropdown label="Status" selectedKey={status} options={this.statusOptions} onChange={(e, option) => this.handleInputChange(option?.key as string, 'status')} required />
+        <TextField label="Created By" value={createdBy} onChange={(e, newValue) => this.handleInputChange(newValue || '', 'createdBy')} required />
+        <TextField label="Modified By" value={modifiedBy} onChange={(e, newValue) => this.handleInputChange(newValue || '', 'modifiedBy')} required />
+        
+        <input type="file" onChange={this.handleFileChange} style={{ marginTop: '15px' }} />
 
-        <div style={{ marginBottom: '15px' }}>
-          <TextField
-            label="End Date"
-            type="date"
-            value={endDate}
-            onChange={(e, newValue) => this.handleInputChange(newValue || '', 'endDate')}
-            required
-          />
-        </div>
-
-        <div style={{ marginBottom: '15px' }}>
-          <Dropdown
-            label="Status"
-            selectedKey={status}
-            options={this.statusOptions}
-            onChange={(e, option) => this.handleInputChange(option?.key as string, 'status')}
-            required
-          />
-        </div>
-
-        <div style={{ marginBottom: '15px' }}>
-          <TextField
-            label="Created By"
-            value={createdBy}
-            onChange={(e, newValue) => this.handleInputChange(newValue || '', 'createdBy')}
-            required
-          />
-        </div>
-
-        <div style={{ marginBottom: '15px' }}>
-          <TextField
-            label="Modified By"
-            value={modifiedBy}
-            onChange={(e, newValue) => this.handleInputChange(newValue || '', 'modifiedBy')}
-            required
-          />
-        </div>
-
-        <div style={{ marginTop: '15px' }}>
-          <PrimaryButton type="submit">Submit Leave Request</PrimaryButton>
-        </div>
+        <PrimaryButton type="submit" disabled={loading} style={{ marginTop: '15px' }}>
+          {loading ? 'Submitting...' : 'Submit Leave Request'}
+        </PrimaryButton>
       </form>
     );
   }
