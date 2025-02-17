@@ -1,0 +1,140 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\asus\\source\\repos\\test\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{B1D745EE-6A3D-4D01-B4EB-F0792123799C}|test\\test.csproj|c:\\users\\asus\\source\\repos\\test\\test\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B1D745EE-6A3D-4D01-B4EB-F0792123799C}|test\\test.csproj|solutionrelative:test\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1D745EE-6A3D-4D01-B4EB-F0792123799C}|test\\test.csproj|c:\\users\\asus\\source\\repos\\test\\test\\models\\leaverequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B1D745EE-6A3D-4D01-B4EB-F0792123799C}|test\\test.csproj|solutionrelative:test\\models\\leaverequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1D745EE-6A3D-4D01-B4EB-F0792123799C}|test\\test.csproj|c:\\users\\asus\\source\\repos\\test\\test\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B1D745EE-6A3D-4D01-B4EB-F0792123799C}|test\\test.csproj|solutionrelative:test\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1D745EE-6A3D-4D01-B4EB-F0792123799C}|test\\test.csproj|c:\\users\\asus\\source\\repos\\test\\test\\controllers\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B1D745EE-6A3D-4D01-B4EB-F0792123799C}|test\\test.csproj|solutionrelative:test\\controllers\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1D745EE-6A3D-4D01-B4EB-F0792123799C}|test\\test.csproj|c:\\users\\asus\\source\\repos\\test\\test\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{B1D745EE-6A3D-4D01-B4EB-F0792123799C}|test\\test.csproj|solutionrelative:test\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1D745EE-6A3D-4D01-B4EB-F0792123799C}|test\\test.csproj|c:\\users\\asus\\source\\repos\\test\\test\\test.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{B1D745EE-6A3D-4D01-B4EB-F0792123799C}|test\\test.csproj|solutionrelative:test\\test.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1D745EE-6A3D-4D01-B4EB-F0792123799C}|test\\test.csproj|c:\\users\\asus\\source\\repos\\test\\test\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{B1D745EE-6A3D-4D01-B4EB-F0792123799C}|test\\test.csproj|solutionrelative:test\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\test\\test\\Program.cs",
+              "RelativeDocumentMoniker": "test\\Program.cs",
+              "ToolTip": "C:\\Users\\asus\\source\\repos\\test\\test\\Program.cs",
+              "RelativeToolTip": "test\\Program.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAAB4AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-28T05:07:28.376Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "LeaveRequest.cs",
+              "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\test\\test\\Models\\LeaveRequest.cs",
+              "RelativeDocumentMoniker": "test\\Models\\LeaveRequest.cs",
+              "ToolTip": "C:\\Users\\asus\\source\\repos\\test\\test\\Models\\LeaveRequest.cs",
+              "RelativeToolTip": "test\\Models\\LeaveRequest.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-14T06:42:15.456Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "WeatherForecastController.cs",
+              "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\test\\test\\Controllers\\WeatherForecastController.cs",
+              "RelativeDocumentMoniker": "test\\Controllers\\WeatherForecastController.cs",
+              "ToolTip": "C:\\Users\\asus\\source\\repos\\test\\test\\Controllers\\WeatherForecastController.cs",
+              "RelativeToolTip": "test\\Controllers\\WeatherForecastController.cs",
+              "ViewState": "AQIAALcBAAAAAAAAAAAcwL4BAABTAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-13T05:06:32.183Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "test.csproj",
+              "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\test\\test\\test.csproj",
+              "RelativeDocumentMoniker": "test\\test.csproj",
+              "ToolTip": "C:\\Users\\asus\\source\\repos\\test\\test\\test.csproj",
+              "RelativeToolTip": "test\\test.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAwBEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-02-13T01:33:57.721Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\test\\test\\Controllers\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "test\\Controllers\\ApplicationDbContext.cs",
+              "ToolTip": "C:\\Users\\asus\\source\\repos\\test\\test\\Controllers\\ApplicationDbContext.cs",
+              "RelativeToolTip": "test\\Controllers\\ApplicationDbContext.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAmAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-07T04:19:42.972Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\test\\test\\appsettings.json",
+              "RelativeDocumentMoniker": "test\\appsettings.json",
+              "ToolTip": "C:\\Users\\asus\\source\\repos\\test\\test\\appsettings.json",
+              "RelativeToolTip": "test\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-01-28T04:59:58.982Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\test\\test\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "test\\Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\asus\\source\\repos\\test\\test\\Properties\\launchSettings.json",
+              "RelativeToolTip": "test\\Properties\\launchSettings.json",
+              "ViewState": "AQIAAAsAAAAAAAAAAAAYwCgAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-01-28T05:41:34.073Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

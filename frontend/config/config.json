@@ -1,0 +1,20 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "leave-front-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/leaveFront/LeaveFrontWebPart.js",
+          "manifest": "./src/webparts/leaveFront/LeaveFrontWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "LeaveFrontWebPartStrings": "lib/webparts/leaveFront/loc/{locale}.js",
+    "ControlStrings": "./node_modules/@pnp/spfx-controls-react/lib/loc/{locale}.js"
+
+  }
+}
